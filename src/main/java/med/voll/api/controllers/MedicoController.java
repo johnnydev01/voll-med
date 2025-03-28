@@ -1,8 +1,13 @@
-package med.voll.api.controller;
+package med.voll.api.controllers;
 
 
 import jakarta.validation.Valid;
-import med.voll.api.medico.*;
+import med.voll.api.dtos.DadosAtualizacaoMedico;
+import med.voll.api.dtos.DadosCadastroMedico;
+import med.voll.api.dtos.DadosDetalhamentoMedico;
+import med.voll.api.dtos.DadosListagemMedico;
+import med.voll.api.models.Medico;
+import med.voll.api.repositories.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,14 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("medicos")
 public class MedicoController {
 
     @Autowired
     private MedicoRepository repository;
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
