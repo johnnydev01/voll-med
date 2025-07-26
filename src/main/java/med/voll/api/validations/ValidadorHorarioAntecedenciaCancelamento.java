@@ -4,10 +4,12 @@ import med.voll.api.dtos.DadosCancelamentoConsulta;
 import med.voll.api.exeptions.ValidacaoException;
 import med.voll.api.repositories.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+@Component
 public class ValidadorHorarioAntecedenciaCancelamento implements ValidadorCancelamentoDeConsulta  {
 
     @Autowired

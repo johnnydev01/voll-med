@@ -1,5 +1,6 @@
 package med.voll.api.controllers;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.dtos.DadosAtualizacaoPaciente;
 import med.voll.api.dtos.DadosCadastroPaciente;
@@ -7,6 +8,7 @@ import med.voll.api.dtos.DadosDetalhamentoPaciente;
 import med.voll.api.dtos.DadosListagemPaciente;
 import med.voll.api.models.Paciente;
 import med.voll.api.repositories.PacienteRepository;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("pacientes")
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
 
     @Autowired
@@ -35,7 +38,7 @@ public class PacienteController {
 
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemPaciente>> listar(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao) {
+    public ResponseEntity<Page<DadosListagemPaciente>> listar(@ParameterObject @PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
 
         return  ResponseEntity.ok(page);
