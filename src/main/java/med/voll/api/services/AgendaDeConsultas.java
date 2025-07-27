@@ -20,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AgendaDeConsultas {
@@ -81,9 +82,13 @@ public class AgendaDeConsultas {
         if(dados.espcialidade() == null) {
             throw new ValidacaoException("Especialidade obrigatória quando o médico não for escolhido");
         }
-        Pageable paginacao = PageRequest.of(0, 1);
 
-        Page<Medico> page = medicoRepository.escolherMedicoAleatorioLivreNaData(dados.espcialidade(), dados.data(), paginacao);
+        Pageable paginacao = PageRequest.of(0, 1);
+        Page<Medico> page = medicoRepository.escolherMedicoAleatorioLivreNaData(
+                dados.espcialidade(),
+                dados.data(),
+                paginacao
+        );
 
         return page.hasContent() ? page.getContent().get(0) : null;
     }

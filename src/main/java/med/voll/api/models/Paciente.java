@@ -53,4 +53,16 @@ public class Paciente {
     public void excluir() {
         this.ativo = false;
     }
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "ativo=" + getAtivo() +
+                ", cpf='" + getCpf() + '\'' +
+                ", telefone='" + getTelefone() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", nome='" + getNome() + '\'' +
+                ", id=" + getId() +
+                '}';
+    }
 }

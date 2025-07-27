@@ -1,5 +1,6 @@
 package med.voll.api.repositories;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import med.voll.api.models.Medico;
@@ -30,13 +31,12 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             AND
             c.motivoCancelamento is null
       )
-    ORDER BY function('RAND')       
+    ORDER BY function('RAND')
 """)
     Page<Medico> escolherMedicoAleatorioLivreNaData(
             @Param("especialidade") Especialidade especialidade,
             @Param("data") LocalDateTime data,
-            Pageable pageable
-    );
+            Pageable pageable);
 
     @Query("""
             select m.ativo

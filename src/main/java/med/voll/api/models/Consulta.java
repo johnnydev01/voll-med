@@ -40,4 +40,14 @@ public class Consulta {
     public void cancelar(MotivoCancelamento motivo) {
         this.motivoCancelamento = motivo;
     }
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "medico=" + getMedico() +
+                ", paciente=" + getPaciente() +
+                ", data=" + getData() +
+                ", motivoCancelamento=" + getMotivoCancelamento() +
+                '}';
+    }
 }
